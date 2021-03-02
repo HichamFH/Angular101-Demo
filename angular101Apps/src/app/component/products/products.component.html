@@ -1,11 +1,65 @@
 <div class="container">
-<h2>Product List : </h2>
+  <div class="forms">
+    <div class="row">
+      <form action="" #form ="ngForm"></form>
+      <div class="col-full">
+          <label [class.hide-me]="isUpdate" for="productId">Product ID</label>
+          <input type="number" [hidden]="isUpdate" [(ngModel)]="product.id" >
+      </div>              
+      <div class="col-full">
+          <label for="name">Name</label>
+          <input type="text" [(ngModel)]="product.name" >
+      </div>
+      <div class="col-full">
+          <label for="price">Price</label>
+  
+          <input type="number" [(ngModel)]="product.price" >
+      </div>
+      <div class="col-full">
+          <button  class="btn btn-dark" value="Create" [hidden] = "isUpdate"(click)="onSubmit(product)" >New Product</button>
+          <button
+          [hidden]="!isUpdate"
+          type="button"
+          class="btn btn-secondary"
+          (click)="updateProduct(product)"
+        >
+          Update
+        </button>
+        <button
+        [hidden]="!isUpdate"
+        type="button"
+        class="btn btn-dark"
+        (click)="clear()"
+      >
+        Clear
+      </button>
+      </div>
+      
+  </div>  
+  </div>
+  <div class="my-hr"></div>
+  <div class="list">
+  
+    
+    <table class="my-table">
+      <thead class="my-thead">
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+      </thead>
+      <tbody>
+          <tr *ngFor="let product of products ; let i = index" >
+              <td>{{product.id}}</td>
+              <td>{{product.name}}</td>
+              <td [class.test]="product.price > 3000">{{product.price}}</td>
+              <td>
+                <i class="fas fa-edit" (click)="getProductInForm(product)" aria-hidden="true"></i>
+                <i class="fas fa-trash" (click)="deleteProduct(product.id)" aria-hidden="true"></i>
+              </td>
+          </tr>
+      </tbody>
+  </table>
 
-    <ul>
-      <li *ngFor="let product of products">
-        ID :  {{product.id}} &nbsp;
-        Name : {{product.name}} &nbsp;
-        Price : {{product.price}}
-      </li>
-    </ul>
+  </div>
+
 </div>
