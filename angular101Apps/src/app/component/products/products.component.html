@@ -38,10 +38,10 @@
   </div>  
   </div>
   <div class="my-hr"></div>
-  <div class="list">
+  <div class="list text-center">
   
-    
-    <table class="my-table">
+
+    <table class="my-table" *ngIf="products.length > 0 ; else elseBlock">
       <thead class="my-thead">
           <th>ID</th>
           <th>Name</th>
@@ -59,6 +59,8 @@
           </tr>
       </tbody>
   </table>
+  <ng-template  #elseBlock>No Data In Product List</ng-template>
+
 
   </div>
 
